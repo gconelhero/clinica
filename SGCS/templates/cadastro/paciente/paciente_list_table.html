@@ -1,0 +1,35 @@
+<div class="table-responsive">
+  <table id="lista-database" class="table table-bordered table-striped lista-table">
+    <thead>
+      <tr>
+        <th>Data de Entrada</th>                   
+        <th>Nome</th>
+        <th>CPF</th>
+        <th>Saldo</th>
+        <th>Tipo</th>
+        <th>Remover</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      {% if all_pacientes%}
+      {% for paciente in all_pacientes %}
+      {% if not paciente.desativar %}
+      <tr class="clickable-row" data-href="{% url 'cadastro:editarpacienteview' paciente.id %}">
+        <td>{{paciente.data_entrada|date:"d/m/Y"}}</td>
+        <td>{{paciente.nome_razao_social}}</td>
+        <td>{{paciente.pessoa_fis_info.cpf|default_if_none:""}}</td>
+        <td>{{paciente.limite_de_credito}}</td>
+        <td>{{paciente.tipo}}</td>
+        <td class="lista-remove">
+          <input type="checkbox" name="{{paciente.id}}" id="remover-entrada-{{paciente.id}}"/>
+          <label class="remove-entry-label" for="remover-entrada-{{paciente.id}}"></label>
+        </td>
+      </tr>
+      {% endif %}
+      {% endfor %}
+      {%else%}
+      {%endif%}
+    </tbody>
+  </table>
+</div>

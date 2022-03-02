@@ -1,0 +1,20 @@
+{% load static %}
+<!-- JQuery Mask Input Js -->
+<script src="{% static 'js/jquery.mask.js' %}"></script>
+
+{% include 'base/load_jqueryui.html' %}
+
+{% include 'base/datepicker_js.html' %}
+
+{% include 'base/tooltip_js.html' %}
+
+ <script type="text/javascript">
+ 	var req_urls = {}
+ 	req_urls.gerar_lancamento_url = "{% url 'financeiro:gerarlancamento' %}"
+  req_urls.gerar_lancamento_url = "{% url 'financeiro:gerarlancamento' %}"
+  req_urls.info_cliente_url = "{% url 'financeiro:gerarlancamento' %}"
+  req_urls.info_transportadora_url = "{% url 'cadastro:infotransportadora' %}"
+
+    $.Admin.maskInput.maskLancamento();
+    $.Admin.lancamentoForm.init(req_urls);
+  </script>
